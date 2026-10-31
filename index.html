@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KS Bhavana · Data Science & AI Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07061a;--ink:#e9e8ff;--mut:#9a98c8;--p:#b05cff;--b:#3d8bff;--g:rgba(255,255,255,.055);--gb:rgba(255,255,255,.12);--grad:linear-gradient(120deg,var(--p),var(--b));box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:80px;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 'Space Grotesk',system-ui,sans-serif;overflow-x:hidden}
+canvas#net{position:fixed;inset:0;z-index:0;opacity:.7}
+.orb{position:fixed;border-radius:50%;filter:blur(90px);z-index:0;animation:fl 16s ease-in-out infinite alternate;pointer-events:none}
+.o1{width:380px;height:380px;background:#7a2cff55;top:-80px;left:-100px}.o2{width:420px;height:420px;background:#1f6bff44;bottom:-120px;right:-120px;animation-delay:-8s}
+@keyframes fl{to{transform:translate(60px,50px) scale(1.2)}}
+main,header,footer{position:relative;z-index:1}
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:12px 5vw;background:rgba(7,6,26,.6);backdrop-filter:blur(14px);border-bottom:1px solid var(--gb)}
+.logo{font-weight:700;letter-spacing:.5px}.logo b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}nav a{color:var(--mut);text-decoration:none;font-size:14px;transition:.3s}nav a:hover{color:#fff;text-shadow:0 0 12px var(--p)}
+@media(max-width:760px){nav ul{display:none}}
+section{padding:90px 5vw 30px;max-width:1120px;margin:auto}
+h2{font-size:clamp(26px,4vw,38px);margin:0 0 34px;display:flex;align-items:center;gap:14px}
+h2 span{font:500 14px 'JetBrains Mono',monospace;color:var(--p)}h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--gb),transparent)}
+.glass{background:var(--g);border:1px solid var(--gb);border-radius:20px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 8px 40px #0006,inset 0 1px 0 #ffffff14;transition:transform .25s,border-color .3s,box-shadow .3s}
+.glass:hover{border-color:#b05cff88;box-shadow:0 10px 50px #7a2cff33,inset 0 1px 0 #ffffff1f}
+.hero{min-height:100svh;display:grid;place-items:center;padding:110px 5vw 40px;text-align:center}
+.tag{display:inline-block;font:500 13px 'JetBrains Mono',monospace;color:var(--b);border:1px solid #3d8bff66;padding:5px 14px;border-radius:99px;background:#3d8bff14;margin-bottom:22px}
+h1{font-size:clamp(44px,10vw,98px);line-height:1;margin:0;font-weight:700;letter-spacing:-2px;background:linear-gradient(120deg,#fff 10%,var(--p) 50%,var(--b));background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}
+@keyframes sh{to{background-position:200%}}
+.role{font:500 clamp(15px,2.6vw,21px) 'JetBrains Mono',monospace;color:var(--mut);margin:20px 0 10px;min-height:1.6em}.role i{display:inline-block;width:2px;height:1.1em;background:var(--p);vertical-align:middle;animation:bl 1s steps(2) infinite}@keyframes bl{50%{opacity:0}}
+.lead{max-width:620px;margin:0 auto 30px;color:var(--mut)}
+.btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn{cursor:pointer;font:500 15px 'Space Grotesk',sans-serif;color:#fff;text-decoration:none;padding:13px 26px;border-radius:14px;border:1px solid var(--gb);background:var(--g);backdrop-filter:blur(10px);transition:.3s}
+.btn.pri{background:var(--grad);border:0;box-shadow:0 0 28px #7a2cff66}.btn:hover{transform:translateY(-3px);box-shadow:0 0 30px #3d8bff77}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin-top:46px;max-width:640px}
+.stat{padding:16px}.stat b{display:block;font-size:30px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}.stat small{color:var(--mut)}
+.about{display:grid;grid-template-columns:1.3fr 1fr;gap:22px}@media(max-width:800px){.about{grid-template-columns:1fr}}
+.about .glass{padding:28px}.about p{margin:0 0 14px;color:#cfcdf2}
+.focus li{margin:10px 0;list-style:none;color:#cfcdf2;padding-left:26px;position:relative}.focus{padding:0;margin:0}.focus li::before{content:"◆";position:absolute;left:0;color:var(--p);text-shadow:0 0 10px var(--p)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}.tab{cursor:pointer;font:500 13px 'JetBrains Mono',monospace;color:var(--mut);background:var(--g);border:1px solid var(--gb);padding:8px 16px;border-radius:99px;transition:.3s}
+.tab.on{color:#fff;background:var(--grad);border-color:transparent;box-shadow:0 0 20px #7a2cff66}
+.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.sk{padding:18px 20px;animation:up .5s both}.sk{transition:.3s}.sk:hover{transform:translateY(-4px)}.sk div{display:flex;justify-content:space-between;align-items:center;font-size:15px}.sk em{font-style:normal;font-size:11px;color:var(--p);text-shadow:0 0 10px var(--p)}
+.bar{height:5px;border-radius:9px;background:#ffffff14;overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--grad);border-radius:9px;box-shadow:0 0 12px var(--p);transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+@keyframes up{from{opacity:0;transform:translateY(14px)}}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.pj{padding:26px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;transform-style:preserve-3d}
+.pj::before{content:"";position:absolute;width:160px;height:160px;border-radius:50%;background:var(--grad);filter:blur(60px);opacity:.18;top:-60px;right:-50px;transition:.4s}.pj:hover::before{opacity:.45}
+.pj .n{font:500 12px 'JetBrains Mono',monospace;color:var(--p)}.pj h3{margin:0;font-size:20px;line-height:1.3}.pj ul{margin:0;padding-left:18px;color:#bdbbe6;font-size:14.5px}.pj li{margin:5px 0}
+.plk{align-self:flex-start;font:500 13px 'JetBrains Mono',monospace;color:#fff;text-decoration:none;padding:8px 14px;border-radius:10px;border:1px solid #b05cff66;background:#7a2cff22;transition:.3s}.plk:hover{background:var(--grad);box-shadow:0 0 20px #7a2cff77;transform:translateY(-2px)}.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}.chips span{font:500 11.5px 'JetBrains Mono',monospace;color:#c9c7ff;background:#7a2cff22;border:1px solid #b05cff44;padding:4px 10px;border-radius:99px}
+.tl{position:relative;padding-left:30px;display:grid;gap:18px}.tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--p),var(--b),transparent)}
+.ed{padding:22px 24px;position:relative}.ed::before{content:"";position:absolute;left:-30px;top:28px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--p);box-shadow:0 0 14px var(--p)}
+.ed .y{font:500 12px 'JetBrains Mono',monospace;color:var(--b)}.ed h3{margin:4px 0;font-size:18px}.ed p{margin:0;color:var(--mut)}.ed .sc{float:right;font-size:26px;font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}.ct{padding:24px}.ct .ic{font-size:28px;margin-bottom:8px;filter:drop-shadow(0 0 10px var(--p))}.ct h3{margin:0 0 4px;font-size:17px}.ct p{margin:0;color:var(--mut);font-size:14px}
+.contact{display:grid;grid-template-columns:1fr 1.2fr;gap:22px}@media(max-width:800px){.contact{grid-template-columns:1fr}}
+.contact .glass{padding:26px}.lk{display:flex;align-items:center;gap:14px;padding:14px;margin-bottom:10px;border-radius:14px;border:1px solid var(--gb);color:var(--ink);text-decoration:none;transition:.3s;background:#ffffff08;overflow-wrap:anywhere}.lk:hover{border-color:var(--p);transform:translateX(6px)}.lk b{width:38px;height:38px;flex:none;display:grid;place-items:center;border-radius:11px;background:var(--grad);font-size:13px}
+input,textarea{width:100%;font:inherit;color:var(--ink);background:#ffffff0a;border:1px solid var(--gb);border-radius:12px;padding:13px 14px;margin-bottom:12px;outline:0;transition:.3s}input:focus,textarea:focus{border-color:var(--b);box-shadow:0 0 18px #3d8bff44}
+footer{text-align:center;color:var(--mut);padding:50px 5vw 40px;font-size:14px}
+.rv{opacity:0;transform:translateY(28px);transition:.8s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+#resume{display:none}
+@media print{body>*:not(#resume){display:none!important}#resume{display:block;color:#000;background:#fff;font:13px/1.5 Arial,sans-serif;padding:10px}#resume h1{all:unset;display:block;font:700 26px Arial}#resume h4{margin:14px 0 4px;border-bottom:1px solid #000;font-size:13px}#resume p{margin:3px 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<canvas id="net"></canvas><div class="orb o1"></div><div class="orb o2"></div>
+
+<nav><div class="logo">KS<b>.</b>Bhavana</div><ul>
+<li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#projects">Projects</a></li><li><a href="#education">Education</a></li><li><a href="#certs">Certificates</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+
+<header class="hero"><div>
+<h1>KS BHAVANA</h1>
+<div class="role"><span id="ty"></span><i></i></div>
+<p class="lead">Computer Science (Data Science) undergraduate who turns raw data into clear insights, using Python, SQL and Tableau, backed by machine learning projects.</p>
+<div class="btns">
+<a class="btn pri" href="#projects">View Projects</a>
+<button class="btn" id="dl">⬇ Download Résumé</button>
+<a class="btn" id="gh" href="https://github.com/ksbhavanaa" target="_blank" rel="noopener">GitHub</a>
+<a class="btn" href="https://linkedin.com/in/ks-bhavana" target="_blank" rel="noopener">LinkedIn</a></div>
+<div class="stats" style="margin-inline:auto">
+<div class="glass stat"><b data-n="9.28">0</b><small>CGPA</small></div>
+<div class="glass stat"><b data-n="3">0</b><small>AI Projects</small></div>
+<div class="glass stat"><b data-n="3">0</b><small>Certifications</small></div></div>
+</div></header>
+
+<main>
+<section id="about" class="rv"><h2><span>01</span>About Me</h2>
+<div class="about">
+<div class="glass"><p>I'm a B.Tech student in Computer Science and Engineering (Data Science) at New Horizon College of Engineering, Bangalore, with hands-on experience across AI, data analysis, and IoT.</p>
+<p>My work sits where machine learning meets real systems: federated learning that keeps data private, explainable models that justify their decisions, and Flask apps powered by LLaMA that people can actually use.</p>
+<p>I'm aiming for a data analyst role, where I can clean, explore and visualize data and turn it into decisions people can act on.</p></div>
+<div class="glass"><h3 style="margin-top:0">Current focus</h3><ul class="focus"><li>Data analysis &amp; visualization</li><li>Python, SQL &amp; Tableau</li><li>Machine learning &amp; Explainable AI</li><li>Seeking data analyst roles &amp; internships</li></ul></div>
+</div></section>
+
+<section id="skills" class="rv"><h2><span>02</span>Skills</h2>
+<div class="tabs" id="tabs"></div><div class="skills" id="sk"></div></section>
+
+<section id="projects" class="rv"><h2><span>03</span>Projects</h2>
+<div class="projects">
+<article class="glass pj"><div class="n">PROJECT 01 · FEATURED</div><h3>Privacy-Preserving Federated Intrusion Detection for Real-Time IoT Networks</h3>
+<ul><li>Federated learning keeps raw traffic data on-device while detecting cyberattacks.</li><li>Compared XGBoost, Random Forest and ANN/MLP classifiers.</li><li>SHAP-based explainability reveals the features driving each attack prediction.</li></ul>
+<div class="chips"><span>Python</span><span>XGBoost</span><span>Random Forest</span><span>ANN/MLP</span><span>Federated Learning</span><span>SHAP</span></div><a class="plk" href="https://github.com/ksbhavanaa/federated-intrusion-detection-for-IoT" target="_blank" rel="noopener">View on GitHub ↗</a></article>
+<article class="glass pj"><div class="n">PROJECT 02</div><h3>DERMA-AI · Smart Skin Health &amp; Lifestyle Guidance</h3>
+<ul><li>Analyzes uploaded skin images to give personalized skincare and lifestyle advice.</li><li>Combines computer vision with LLaMA for user-specific insights.</li><li>Flask app with registration, image upload, analysis and result reports.</li></ul>
+<div class="chips"><span>Python</span><span>Flask</span><span>Computer Vision</span><span>LLaMA</span><span>HTML/CSS</span></div><a class="plk" href="https://github.com/ksbhavanaa/Derma-Ai" target="_blank" rel="noopener">View on GitHub ↗</a></article>
+<article class="glass pj"><div class="n">PROJECT 03</div><h3>AI-Powered Company-Specific Interview Guide</h3>
+<ul><li>Generates tailored interview questions and prep guidance from a company and role.</li><li>LLaMA 3.2 integrated with a Flask backend.</li><li>Clean interface for entering details and getting customized preparation.</li></ul>
+<div class="chips"><span>Python</span><span>Flask</span><span>LLaMA 3.2</span><span>HTML/CSS</span></div><a class="plk" href="https://github.com/ksbhavanaa/AI-powered-company-specific-interview-guide" target="_blank" rel="noopener">View on GitHub ↗</a></article>
+<article class="glass pj"><div class="n">PROJECT 04</div><h3>CampusRide · Student Carpool &amp; Subscription Ride System</h3>
+<ul><li>Role-based flows for students and drivers, with registration, login and dashboards.</li><li>Students search rides across Bangalore routes and book seats, with availability updating instantly.</li><li>Drivers create, edit and cancel rides and view their passengers.</li></ul>
+<div class="chips"><span>Python</span><span>Flask</span><span>MySQL</span><span>SQLAlchemy</span><span>Jinja</span><span>HTML/CSS/JS</span></div><a class="plk" href="https://github.com/ksbhavanaa/student-carpool-and-subscription-ride-system" target="_blank" rel="noopener">View on GitHub ↗</a></article>
+<article class="glass pj"><div class="n">INDUSTRY 4.0 · ACADEMIC</div><h3>IoT Temperature &amp; Humidity Monitoring System</h3>
+<ul><li>DHT sensor streams real-time readings over MQTT.</li><li>ThingSpeak provides cloud storage, monitoring and visualization.</li><li>Live dashboard displays environmental data.</li></ul>
+<div class="chips"><span>IoT</span><span>MQTT</span><span>ThingSpeak</span><span>DHT Sensor</span></div></article>
+</div></section>
+
+<section id="education" class="rv"><h2><span>04</span>Education</h2>
+<div class="tl">
+<div class="glass ed"><span class="sc">9.28</span><div class="y">2023 – 2027</div><h3>B.Tech · CSE (Data Science)</h3><p>New Horizon College of Engineering, Bangalore · CGPA</p></div>
+<div class="glass ed"><span class="sc">95.5%</span><div class="y">2021 – 2023</div><h3>Class XII</h3><p>Narayana Junior College, Tirupati · Board of Intermediate Education, AP</p></div>
+<div class="glass ed"><span class="sc">94.1%</span><div class="y">2020 – 2021</div><h3>Class X</h3><p>Montfort Centenary School, Kuppam · Board of Secondary Education, AP</p></div>
+</div></section>
+
+<section id="certs" class="rv"><h2><span>05</span>Certificates</h2>
+<div class="certs">
+<div class="glass ct"><div class="ic">📡</div><h3>Internet of Things (IoT)</h3><p>Infosys Springboard</p></div>
+<div class="glass ct"><div class="ic">📊</div><h3>SAP Analytics Cloud · Beginner</h3><p>SAP Learning · April 2026</p></div>
+<div class="glass ct"><div class="ic">🖥️</div><h3>Fundamentals of Operating Systems</h3><p>NPTEL</p></div>
+</div></section>
+
+<section id="contact" class="rv"><h2><span>06</span>Contact</h2>
+<div class="contact">
+<div class="glass"><h3 style="margin-top:0">Let's build something</h3><p style="color:var(--mut)">Open to data analyst internships and roles, and to collaborations.</p>
+<a class="lk" href="mailto:ksbhavana28@gmail.com"><b>✉</b>ksbhavana28@gmail.com</a>
+<a class="lk" href="https://linkedin.com/in/ks-bhavana" target="_blank" rel="noopener"><b>in</b>linkedin.com/in/ks-bhavana</a>
+<a class="lk" id="gh2" href="https://github.com/ksbhavanaa" target="_blank" rel="noopener"><b>GH</b>github.com/ksbhavanaa</a>
+<a class="lk" href="tel:+916303870027"><b>☎</b>+91 63038 70027</a></div>
+<form class="glass" id="f"><input id="nm" placeholder="Your name" required><input id="em" type="email" placeholder="Your email" required><textarea id="ms" rows="5" placeholder="Your message" required></textarea><button class="btn pri" style="width:100%" type="submit">Send Message →</button><p id="st" style="color:var(--mut);font-size:14px;margin:12px 0 0"></p></form>
+</div></section>
+</main>
+<footer>© 2026 KS Bhavana · Designed &amp; built with curiosity</footer>
+
+<div id="resume"><h1>KS BHAVANA</h1><p>ksbhavana28@gmail.com | 6303870027 | linkedin.com/in/ks-bhavana</p>
+<h4>SUMMARY</h4><p>Computer Science (Data Science) undergraduate with knowledge of Python, SQL, Machine Learning, and IoT. Hands-on experience through academic projects in AI, data analysis, and IoT.</p>
+<h4>EDUCATION</h4><p>B.Tech CSE (Data Science), New Horizon College of Engineering, Bangalore, 2023-2027, CGPA 9.28</p><p>Class XII, Narayana Junior College, Tirupati, 2021-2023, 95.5%</p><p>Class X, Montfort Centenary School, Kuppam, 2020-2021, 94.1%</p>
+<h4>TECHNICAL SKILLS</h4><p>Python, Java, SQL · Pandas, NumPy, Matplotlib, Scikit-learn, XGBoost · HTML, CSS, Flask · Odoo, ThingSpeak API, Browser Robotics, 3D Modelling · Machine Learning, Federated Learning, Explainable AI · Jupyter Notebook, Tableau</p>
+<h4>PROJECTS</h4><p>Privacy Preserving Federated Intrusion Detection System for Real Time IoT Networks (Python, XGBoost, Random Forest, ANN/MLP, Federated Learning, SHAP)</p><p>DERMA-AI: Smart Skin Health &amp; Lifestyle Guidance System (Python, Flask, Computer Vision, LLaMA)</p><p>AI-Powered Company-Specific Interview Guide (Python, Flask, LLaMA 3.2)</p><p>Industry 4.0: IoT-Based Temperature &amp; Humidity Monitoring System (MQTT, ThingSpeak, DHT)</p>
+<h4>CERTIFICATIONS</h4><p>IoT, Infosys Springboard · SAP Analytics Cloud Beginner, April 2026 · Fundamentals of Operating Systems, NPTEL</p></div>
+
+<script>
+// Set these once you have your usernames
+var GITHUB="https://github.com/ksbhavanaa";
+document.getElementById('gh').href=GITHUB;document.getElementById('gh2').href=GITHUB;
+
+// typed roles
+var R=["Aspiring Data Analyst","Python · SQL · Tableau","Data Science Undergraduate","Insights from Raw Data"],ri=0,ci=0,del=false,ty=document.getElementById('ty');
+(function t(){var w=R[ri];ty.textContent=w.slice(0,ci);if(!del&&ci<w.length){ci++;setTimeout(t,70)}else if(!del){del=true;setTimeout(t,1400)}else if(ci>0){ci--;setTimeout(t,35)}else{del=false;ri=(ri+1)%R.length;setTimeout(t,300)}})();
+
+// skills
+var S={"Data Analytics":[["Python"],["SQL"],["Pandas"],["NumPy"],["Matplotlib"],["Tableau"],["SAP Analytics Cloud"],["Jupyter Notebook"]],"Programming":[["Python"],["Java"],["SQL"]],"Data Science & ML":[["Pandas"],["NumPy"],["Matplotlib"],["Scikit-learn"],["XGBoost"]],"Web":[["HTML"],["CSS"],["Flask"]],"Industry 4.0":[["Odoo ERP"],["ThingSpeak API"],["Browser Robotics"],["3D Modelling"]],"Core Concepts":[["Machine Learning"],["Federated Learning"],["Explainable AI"]],"Tools":[["Jupyter Notebook"],["Tableau"]]};
+var tabs=document.getElementById('tabs'),box=document.getElementById('sk');
+function show(k){[].forEach.call(tabs.children,function(b){b.classList.toggle('on',b.textContent===k)});box.innerHTML="";S[k].forEach(function(s,i){var d=document.createElement('div');d.className='glass sk';d.style.animationDelay=i*70+'ms';d.innerHTML='<div><span>'+s[0]+'</span><em>●</em></div>';box.appendChild(d)})}
+Object.keys(S).forEach(function(k){var b=document.createElement('button');b.className='tab';b.textContent=k;b.onclick=function(){show(k)};tabs.appendChild(b)});show("Data Analytics");
+
+// reveal + counters
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.1});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+document.querySelectorAll('[data-n]').forEach(function(el){var n=parseFloat(el.dataset.n),dec=String(n).indexOf('.')>-1?2:0,s=null;requestAnimationFrame(function f(ts){s=s||ts;var p=Math.min((ts-s)/1500,1);el.textContent=(n*p).toFixed(dec);if(p<1)requestAnimationFrame(f)})});
+
+// 3D tilt
+document.querySelectorAll('.pj').forEach(function(c){c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform='perspective(800px) rotateY('+x*8+'deg) rotateX('+-y*8+'deg) translateY(-4px)'});c.addEventListener('mouseleave',function(){c.style.transform=''})});
+
+// contact -> mail client
+document.getElementById('f').onsubmit=function(e){e.preventDefault();
+var n=document.getElementById('nm').value,m=document.getElementById('em').value,t=document.getElementById('ms').value,st=document.getElementById('st'),
+sub="Portfolio enquiry from "+n,body=t+"\n\n— "+n+" ("+m+")",
+url="mailto:ksbhavana28@gmail.com?subject="+encodeURIComponent(sub)+"&body="+encodeURIComponent(body);
+var w=null;try{w=window.open(url,'_blank')}catch(x){}
+var txt="To: ksbhavana28@gmail.com\nSubject: "+sub+"\n\n"+body;
+try{navigator.clipboard.writeText(txt)}catch(x){}
+st.innerHTML='Opening your email app… if nothing opens, your message is copied. Just paste it into an email to <a href="mailto:ksbhavana28@gmail.com" style="color:var(--b)">ksbhavana28@gmail.com</a>.'};
+
+// résumé: print-to-PDF of a clean one-page résumé
+document.getElementById('dl').onclick=function(){var a=document.createElement('a');a.href='KS_Bhavana_Resume.pdf';a.download='KS_Bhavana_Resume.pdf';document.body.appendChild(a);a.click();a.remove()};
+
+// particle network
+(function(){var c=document.getElementById('net'),x=c.getContext('2d'),P=[],W,H,m={x:-999,y:-999};
+function rs(){W=c.width=innerWidth;H=c.height=innerHeight}rs();addEventListener('resize',rs);
+addEventListener('mousemove',function(e){m.x=e.clientX;m.y=e.clientY});
+var N=Math.min(70,Math.floor(innerWidth/18));for(var i=0;i<N;i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4});
+(function d(){x.clearRect(0,0,W,H);P.forEach(function(p,i){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;x.fillStyle=i%2?'#b05cff':'#3d8bff';x.beginPath();x.arc(p.x,p.y,1.6,0,6.3);x.fill();
+for(var j=i+1;j<P.length;j++){var q=P[j],dx=p.x-q.x,dy=p.y-q.y,D=dx*dx+dy*dy;if(D<16000){x.strokeStyle='rgba(150,110,255,'+(.22*(1-D/16000))+')';x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}
+var mx=p.x-m.x,my=p.y-m.y;if(mx*mx+my*my<20000){x.strokeStyle='rgba(61,139,255,.4)';x.beginPath();x.moveTo(p.x,p.y);x.lineTo(m.x,m.y);x.stroke()}});requestAnimationFrame(d)})()})();
+</script>
+</body>
+</html>
